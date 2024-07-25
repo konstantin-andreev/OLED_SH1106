@@ -138,6 +138,18 @@ void OLED_DISPLAY::setColumn(uint8_t column){
 }
 //Drawing functions
 
+void OLED_DISPLAY::drawCircle(uint8_t x, uint8_t y, uint8_t r){
+ 
+}
+
+void OLED_DISPLAY::drawFilledRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height){
+  for(uint8_t i = x; i < x+width; i++){
+    for(uint8_t j = y; j < y+height; j++){
+      drawPixel(i,j);
+    }
+  }
+}
+
 void OLED_DISPLAY::drawRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height){
   drawLine(x, y, x + width, y);
   drawLine(x, y, x, y + height);
@@ -154,7 +166,6 @@ void OLED_DISPLAY::drawLine(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1) {
 
   while (x0 != x1 || y0 != y1) {
     drawPixel(x0, y0);
-    Serial.println(x0);
     int16_t e2 = 2 * err;
     if (e2 > -dy) {
       err -= dy;

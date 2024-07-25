@@ -142,6 +142,8 @@ class OLED_DISPLAY {
     void drawPixel(uint8_t x, uint8_t y);
     void drawLine(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
     void drawRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
+    void drawFilledRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
+    void drawCircle(uint8_t x, uint8_t y, uint8_t r);
     void print(int n);
     void print(uint8_t n);
     void print(const char* text);
