@@ -142,10 +142,29 @@ void OLED_DISPLAY::drawCircle(uint8_t x, uint8_t y, uint8_t r){
  
 }
 
+void OLED_DISPLAY::drawBitMap(uint8_t x, uint8_t y, uint8_t *_bitmap, uint8_t width, uint8_t height, bool flipVertically){
+  uint8_t diff = abs(width - height);
+  if(!flipVertically){
+    for(uint8_t i = 0; i < height; i++){
+    for(uint8_t j = 0; j < width; j++){
+      if(pgm_read_byte(&(_bitmap[j + (i*height) - (diff*i)])) == 1 ) drawPixel(x + j, y + i);
+    }
+  }
+  }else{
+    for(uint8_t i = 0; i < height; i++){
+      for(uint8_t j = 0; j < width; j++){
+        if(pgm_read_byte(&(_bitmap[((j + (i*height) - (diff*i) ) + ((j < width/2 +(width%2!=0)? 0:1)?(width -j - 1):-(width -j - 1)))])) == 1 ) drawPixel(x + j, y + i);
+      }
+    }
+  }
+  
+
+}
+
 void OLED_DISPLAY::drawFilledRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height){
-  for(uint8_t i = x; i < x+width; i++){
-    for(uint8_t j = y; j < y+height; j++){
-      drawPixel(i,j);
+  for(uint8_t i = y; i <= y + height; i++){
+    for(uint8_t j = x; j <= x + width; j++){
+      drawPixel(j, i);
     }
   }
 }

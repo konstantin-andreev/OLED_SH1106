@@ -1,3 +1,4 @@
+#include <stdint.h>
 #ifndef SH1106_h
 #define SH1106_h
 #include<SPI.h>
@@ -143,6 +144,7 @@ class OLED_DISPLAY {
     void drawLine(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1);
     void drawRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
     void drawFilledRect(uint8_t x, uint8_t y, uint8_t width, uint8_t height);
+    void drawBitMap(uint8_t x, uint8_t y, uint8_t* _bitmap, uint8_t width, uint8_t height, bool flipVertically);
     void drawCircle(uint8_t x, uint8_t y, uint8_t r);
     void print(int n);
     void print(uint8_t n);
